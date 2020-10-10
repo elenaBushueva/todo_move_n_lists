@@ -45,6 +45,7 @@ function App() {
     const deleteTask = (id) => {
         setTasks(tasks.filter(el => el.id !== id))
     }
+
     const editTask = (id, updatedTask) => {
         const change = tasks.map(el => {
             if (el.id === id) {
@@ -60,13 +61,16 @@ function App() {
         <div className='container'>
             <Controller createTask={createTask}/>
             <div className="row">
-                {statuses.map(el => <Board
-                    status={el}
-                    tasks={tasks}
-                    statusAndPriorityChange={statusAndPriorityChange}
-                    deleteTask={deleteTask}
-                    editTask={editTask}
-                />)}
+                {statuses.map(el =>
+                    <Board
+                        status={el}
+                        tasks={tasks}
+                        deleteTask={deleteTask}
+                        statusAndPriorityChange={statusAndPriorityChange}
+                        priority={priority}
+                        statuses={statuses}
+                        editTask={editTask}
+                    />)}
             </div>
         </div>
     );
