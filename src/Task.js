@@ -3,16 +3,23 @@ import EditModal from './EditModal';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 
 
+
 function Task(props) {
-    const [editMode, setEditMode]=useState(false);
+    const [editMode, setEditMode] = useState(false);
 
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
 
+    const yesHandle = () => {
+        props.deleteTask(props.task._id);
+        setModal(false);
+    }
+
     return (
         <div className="card">
             <div className="card-body">
+                <h6>{props.task.description}</h6>
                 <h5 className="card-title"> {props.task.name} </h5>
                 <h6>priority {props.task.priority}</h6>
                 <Button outline color="primary" size="sm"
@@ -31,18 +38,18 @@ function Task(props) {
                 <EditModal editTask={props.editTask} task={props.task}/>
                 <>
                     <Button outline color="danger" size="sm" onClick={toggle}>delete</Button>
-                    <Modal isOpen={modal} toggle={toggle} >
+                    <Modal isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={toggle}>Are you sure you want delete <br/> {props.task.name}</ModalHeader>
                         <ModalFooter>
                             <Button color="danger"
-                                    onClick={() => props.deleteTask(props.task.id)}>Yes, I want delete</Button>{' '}
+                                    onClick={yesHandle}>Yes, I want delete</Button>{' '}
                             <Button color="secondary" onClick={toggle}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
                 </>
             </div>
-            </div>
-            );
-            }
+        </div>
+    );
+}
 
-            export default Task;
+export default Task;
