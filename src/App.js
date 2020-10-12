@@ -46,10 +46,16 @@ function App() {
         setTasks(tasks.filter(el => el.id !== id))
     }
 
-    const editTask = (id, updatedTask) => {
+    const editTask = (id, newName, newPriority, newStatus) => {
+        const updatedTask = {
+            id,
+            name: newName,
+            priority: newPriority,
+            status: newStatus,
+        }
         const change = tasks.map(el => {
             if (el.id === id) {
-                return {...el, updatedTask}
+                return updatedTask
             }
             return el
         })

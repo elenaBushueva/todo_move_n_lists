@@ -28,7 +28,7 @@ function Task(props) {
                         disabled={props.task.status === props.statuses[props.statuses.length - 1]}
                         onClick={() => props.statusAndPriorityChange(props.task.id, 'right')}>status →</Button>
 
-                <EditModal editTask={props.editTask}/>
+                <EditModal editTask={props.editTask} task={props.task}/>
                 <>
                     <Button outline color="danger" size="sm" onClick={toggle}>delete</Button>
                     <Modal isOpen={modal} toggle={toggle} >
